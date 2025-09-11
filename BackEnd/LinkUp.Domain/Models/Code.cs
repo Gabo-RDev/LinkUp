@@ -14,6 +14,7 @@ public sealed class Code : AuditableEntity
     public CodeType Type { get; set; }
 
     public bool Revoked { get; set; } = false;
+    public bool Used { get; set; } = false;
 
     public User? User { get; set; }
 }
