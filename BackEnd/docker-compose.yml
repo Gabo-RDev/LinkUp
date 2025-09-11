@@ -1,0 +1,63 @@
+services:
+
+  postgres:
+    image: ${POSTGRES_IMAGE}
+    container_name: PostgreSql
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - ${POSTGRES_PORTS}:5432
+    volumes:
+      - LinkUpDb:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} " ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  
+  pgAdmin:
+    image: ${PG_ADMIN_IMAGE}
+    container_name: PgAdmin
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - ${PGADMIN_PORTS}:80
+    volumes:
+      - LinkUp-PgAdmin:/var/lib/pgadmin
+  
+  seq:
+    image: datalust/seq:latest
+    container_name: SEQ
+    restart: always
+    environment:
+      - ACCEPT_EULA=${SEQ_ACCEPT_EULA}
+    ports:
+      - ${SEQ_PORT}:5341
+      - ${SEQ_PORT_UI}:80
+    volumes:
+      - LinkUp-Seq:/data
+
+  redis:
+    image: ${REDIS_IMAGE}
+    container_name: Redis-Cache
+    restart: always
+    ports:
+      - ${REDIS_PORTS}:6379
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  LinkUpDb:
+  LinkUp-PgAdmin:
+  LinkUp-Seq:
