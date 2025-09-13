@@ -2,7 +2,7 @@ using LinkUp.Domain.Common;
 
 namespace LinkUp.Domain.Models;
 
-public sealed class RefreshToken : AuditableEntity
+public sealed class RefreshToken : SoftDeletableEntity
 {
     public Guid UserId { get; set; }
     

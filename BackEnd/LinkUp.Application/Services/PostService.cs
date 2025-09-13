@@ -28,12 +28,12 @@ public class PostService(
             return ResultT<PostDto>.Failure(Error.Failure("400", "Title or Content is empty."));
         }
 
-        if (await postRepository.ValidateAsync(po => po.Title == entity.Title, cancellationToken))
-        {
-            logger.LogWarning("Post with title {Title} already exists.", entity.Title);
-
-            return ResultT<PostDto>.Failure(Error.Failure("400", "Post with title already exists."));
-        }
+        // if (await postRepository.ValidateAsync(po => po.Title == entity.Title, cancellationToken))
+        // {
+        //     logger.LogWarning("Post with title {Title} already exists.", entity.Title);
+        //
+        //     return ResultT<PostDto>.Failure(Error.Failure("400", "Post with title already exists."));
+        // }
 
         var category = await EntityHelper.GetEntityByIdAsync(
             id => postCategoryRepository.GetByIdAsync(id, cancellationToken),

@@ -1,11 +1,12 @@
 using System.Linq.Expressions;
 using LinkUp.Application.Interfaces.Repository;
+using LinkUp.Domain.Common;
 using LinkUp.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace LinkUp.Infrastructure.Persistence.Repository;
 
-public class GenericRepository<TEntity>(LinkUpDbContext context): IGenericRepository<TEntity> where TEntity : class
+public class GenericRepository<TEntity>(LinkUpDbContext context): IGenericRepository<TEntity> where TEntity : SoftDeletableEntity 
 {
     public async Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken) =>
         await context.Set<TEntity>().FindAsync(id, cancellationToken);
@@ -19,8 +20,13 @@ public class GenericRepository<TEntity>(LinkUpDbContext context): IGenericReposi
 
     public async Task DeleteAsync(TEntity entity, CancellationToken cancellationToken)
     {
-        context.Remove(entity);
-        await SaveAsync(cancellationToken);
+        await context.Set<TEntity>()
+            .Where(e => e == entity)
+            .ExecuteUpdateAsync(
+                s => s
+                    .SetProperty(e => e.Deleted, true)
+                    .SetProperty(e => e.DeletedAt, DateTime.UtcNow),
+                cancellationToken);
     }
 
     public async Task CreateAsync(TEntity entity, CancellationToken cancellationToken)
