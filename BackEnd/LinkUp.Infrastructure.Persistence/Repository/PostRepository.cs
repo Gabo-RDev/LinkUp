@@ -11,31 +11,31 @@ public class PostRepository(LinkUpDbContext context) : GenericRepository<Post>(c
     public Task<PagedResult<Post>> GetPostsByCategoryAsync(Guid categoryId, int page, int size,
         CancellationToken cancellationToken)
     {
-        var query = context.Set<Post>().AsNoTracking().Where(n => n.CategoryId == categoryId);
-        
+        var query = Context.Set<Post>().AsNoTracking().Where(n => n.CategoryId == categoryId);
+
         return GetPagedAsync(query, page, size, cancellationToken);
     }
 
     public Task<PagedResult<Post>> GetPagedPostAsync(int page, int size, CancellationToken cancellationToken)
     {
-        var query = context.Set<Post>().AsNoTracking();
-        
+        var query = Context.Set<Post>().AsNoTracking();
+
         return GetPagedAsync(query, page, size, cancellationToken);
     }
 
     public Task<PagedResult<Post>> GetPostsByAdminAsync(Guid adminId, int page, int size,
         CancellationToken cancellationToken)
     {
-        var query = context.Set<Post>().AsNoTracking().Where(n => n.AdminId == adminId);
-        
+        var query = Context.Set<Post>().AsNoTracking().Where(n => n.AdminId == adminId);
+
         return GetPagedAsync(query, page, size, cancellationToken);
     }
 
     public Task<PagedResult<Post>> GetRecentPostsAsync(int page, int size, Guid categoryId,
         CancellationToken cancellationToken)
     {
-        var query = context.Set<Post>().AsNoTracking().Where(n => n.CategoryId == categoryId);
-        
+        var query = Context.Set<Post>().AsNoTracking().Where(n => n.CategoryId == categoryId);
+
         return GetPagedAsync(query, page, size, cancellationToken);
     }
 

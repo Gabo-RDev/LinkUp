@@ -43,8 +43,7 @@ public static class PostMapper
             Content = dto.Content,
             LikesCount = dto.LikesCount,
             AdminId = dto.AuthorPostId,
-            CategoryId = dto.CategoryId,
-            CreatedAt = DateTime.UtcNow
+            CategoryId = dto.CategoryId
         };
     }
 
