@@ -3,7 +3,7 @@ using LinkUp.Domain.Enum;
 
 namespace LinkUp.Domain.Models;
 
-public sealed class Code : AuditableEntity
+public sealed class Code : SoftDeletableEntity
 {
     public Guid UserId { get; set; }
 
