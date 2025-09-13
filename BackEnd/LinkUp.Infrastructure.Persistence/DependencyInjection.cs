@@ -16,13 +16,24 @@ public static class DependencyInjection
     public static void AddInfrastructurePersistence(this IServiceCollection services,
         IConfiguration configuration)
     {
+        #region AddRedis
+
+        string connectionString = configuration.GetConnectionString("RedisConnection")!;
+        services.AddStackExchangeRedisCache(options => { options.Configuration = connectionString; });
+
+        #endregion
+
+        #region AddDbContext
+
         services.AddDbContext<LinkUpDbContext>(db =>
             {
                 db.UseNpgsql(configuration.GetConnectionString("LinkUpConnectionDb"),
                     b => b.MigrationsAssembly("LinkUp.Infrastructure.Persistence"));
             }
         );
-        
+
+        #endregion
+
         #region DI
 
         services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
