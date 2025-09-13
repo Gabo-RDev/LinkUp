@@ -1,3 +1,4 @@
+using LinkUp.Application;
 using LinkUp.Infrastructure.Persistence;
 using LinkUp.Presentation.API.Extensions;
 using Serilog;
@@ -16,6 +17,7 @@ try
     builder.Services.AddSwaggerGen();
 
     builder.Services.AddInfrastructurePersistence(builder.Configuration);
+    builder.Services.AddApplicationLayer(builder.Configuration);
 
     //Service extensions
     builder.Services.AddVersioning();
