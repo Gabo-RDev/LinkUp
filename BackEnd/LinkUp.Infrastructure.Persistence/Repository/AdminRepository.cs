@@ -48,4 +48,7 @@ public class AdminRepository(LinkUpDbContext context): GenericRepository<Admin>(
 
     public async Task<bool> EmailExistAsync(string email, CancellationToken cancellationToken) =>
         await ValidateAsync(a => a.Email == email, cancellationToken);
+
+    public async Task<bool> UserNameExistAsync(string userName, CancellationToken cancellationToken) =>
+        await ValidateAsync(u => u.UserName == userName, cancellationToken);
 }
