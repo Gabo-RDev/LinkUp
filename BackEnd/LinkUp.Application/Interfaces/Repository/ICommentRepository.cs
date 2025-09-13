@@ -18,7 +18,7 @@ public interface ICommentRepository : IGenericRepository<Comment>
     /// <returns>A paginated list of comments for the post.</returns>
     Task<PagedResult<Comment>> GetCommentsPaginatedByPostIdAsync(Guid postId, int page, int size,
         CancellationToken cancellationToken);
-    
+
 
     /// <summary>
     /// Gets the total number of comments for a specific post.

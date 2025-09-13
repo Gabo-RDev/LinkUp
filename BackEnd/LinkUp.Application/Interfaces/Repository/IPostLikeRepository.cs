@@ -9,7 +9,6 @@ namespace LinkUp.Application.Interfaces.Repository;
 /// </summary>
 public interface IPostLikeRepository : IGenericRepository<PostLike>
 {
-
     /// <summary>
     /// Counts the total number of likes for a specific post.
     /// </summary>
