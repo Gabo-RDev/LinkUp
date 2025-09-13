@@ -20,6 +20,8 @@ public sealed class Admin : SoftDeletableEntity
     public DateTime? LastLoginAt { get; set; }
     
     public AdminStatus Status { get; set; } = AdminStatus.Active;
+    
+    public bool ConfirmedAccount { get; set; } = false;
 
     public ICollection<Post> Posts { get; set; } = new List<Post>();
 }

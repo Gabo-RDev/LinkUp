@@ -61,4 +61,9 @@ public interface IAdminRepository : IGenericRepository<Admin>
     /// <param name="userId">The ID of the user to unban.</param>
     /// <param name="cancellationToken">Token to cancel the operation.</param>
     Task UnbanUserAsync(Guid userId, CancellationToken cancellationToken);
+
+    Task<bool> EmailExistAsync(string email, CancellationToken cancellationToken);
+    
+    Task<bool> UserNameExistAsync(string userName, CancellationToken cancellationToken);
+
 }
