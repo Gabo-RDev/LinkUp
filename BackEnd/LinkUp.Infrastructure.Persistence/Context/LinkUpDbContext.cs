@@ -291,6 +291,9 @@ public class LinkUpDbContext(DbContextOptions<LinkUpDbContext> dbContextOptions)
             admin.Property(a => a.Status)
                 .HasConversion<string>()
                 .HasDefaultValue(AdminStatus.Active);
+            
+            admin.Property(a => a.ConfirmedAccount)
+                .HasDefaultValue(false);
 
             admin.Property(a => a.CreatedAt)
                 .IsRequired()

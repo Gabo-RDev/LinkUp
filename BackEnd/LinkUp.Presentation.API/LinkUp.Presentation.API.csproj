@@ -23,6 +23,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\LinkUp.Infrastructure.Persistence\LinkUp.Infrastructure.Persistence.csproj" />
+      <ProjectReference Include="..\LinkUp.Infrastructure.Shared\LinkUp.Infrastructure.Shared.csproj" />
     </ItemGroup>
 
 </Project>
