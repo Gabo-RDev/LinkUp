@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkUp.Application", "LinkUp.Application\LinkUp.Application.csproj", "{0BBCF648-6CE2-44AC-A67D-3F1C94E52DD4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkUp.Infrastructure.Shared", "LinkUp.Infrastructure.Shared\LinkUp.Infrastructure.Shared.csproj", "{A3A77C7C-2D68-448A-819A-75BFCBB3F1F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,7 @@ Global
 		{3E03AEAF-AFD8-4915-A189-60FC12E977F6} = {AF8392AA-FA71-4588-A29E-1F47604B21D8}
 		{D143E13F-2C63-4295-8D04-C0B9ECF3ECD8} = {B0851C07-9CE2-4EF2-BDF6-F5167D0C003F}
 		{0BBCF648-6CE2-44AC-A67D-3F1C94E52DD4} = {D143E13F-2C63-4295-8D04-C0B9ECF3ECD8}
+		{A3A77C7C-2D68-448A-819A-75BFCBB3F1F0} = {3DCBC7E6-A2F4-4CAF-A5BF-343C6D65AECB}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{70048408-4D48-4DEF-BA6D-9088672414F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -50,5 +53,9 @@ Global
 		{0BBCF648-6CE2-44AC-A67D-3F1C94E52DD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BBCF648-6CE2-44AC-A67D-3F1C94E52DD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BBCF648-6CE2-44AC-A67D-3F1C94E52DD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A77C7C-2D68-448A-819A-75BFCBB3F1F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3A77C7C-2D68-448A-819A-75BFCBB3F1F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3A77C7C-2D68-448A-819A-75BFCBB3F1F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3A77C7C-2D68-448A-819A-75BFCBB3F1F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
