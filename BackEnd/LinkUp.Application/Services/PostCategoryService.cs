@@ -42,9 +42,25 @@ public class PostCategoryService(
         return ResultT<CategoryDto>.Success(PostCategoryMapper.ToDto(category));
     }
 
-    public Task<Result> UpdateAsync(Guid id, UpdatePostCategoryDto entity, CancellationToken cancellationToken)
+    public async Task<Result> UpdateAsync(Guid id, UpdatePostCategoryDto entity, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var postCategory = await EntityHelper.GetEntityByIdAsync(
+            postCategoryEntity => postCategoryRepository.GetByIdAsync(postCategoryEntity, cancellationToken),
+            id,
+            "PostCategory",
+            logger
+        );
+
+        if (!postCategory.IsSuccess) return ResultT<CategoryDto>.Failure(postCategory.Error!);
+
+        postCategory.Value.Name = entity.CategoryName;
+        postCategory.Value.UpdatedAt = DateTime.UtcNow;
+
+        await postCategoryRepository.UpdateAsync(postCategory.Value, cancellationToken);
+
+        logger.LogInformation("PostCategory updated successfully.");
+
+        return Result.Success();
     }
 
     public async Task<Result> DeleteAsync(Guid id, CancellationToken cancellationToken)
